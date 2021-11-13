@@ -24,11 +24,6 @@ RSpec.describe User, type: :model do
         another_user.valid?
         expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
-      it 'nicknameが空では登録できない' do
-        @user.nickname = ''
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname can't be blank")
-      end
       it 'emailに@が含まれていないと登録できない' do
         @user.email = 'gmail.com'
         @user.valid?
