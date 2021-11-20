@@ -15,4 +15,6 @@ class User < ApplicationRecord
   validates :first_name_furigana, presence: true, format: { with: VALID_KANA_REGEX }
   validates :last_name_furigana,  presence: true, format: { with: VALID_KANA_REGEX }
   validates :birthday,            presence: true
+
+  has_many :items
 end
