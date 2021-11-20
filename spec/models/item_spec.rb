@@ -22,28 +22,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
-      it 'categoryが空では登録できない' do
-        @item.category_id = ''
+      it 'categoryが未選択では登録できない' do
+        @item.category_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it 'conditionが空では登録できない' do
-        @item.condition_id = ''
+      it 'conditionが未選択では登録できない' do
+        @item.condition_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
-      it 'shipping_chargeが空では登録できない' do
-        @item.shipping_charge_id = ''
+      it 'shipping_chargeが未選択では登録できない' do
+        @item.shipping_charge_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
       end
-      it 'prefectureが空では登録できない' do
-        @item.prefecture_id = ''
+      it 'prefectureが未選択では登録できない' do
+        @item.prefecture_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it 'days_to_shipが空では登録できない' do
-        @item.days_to_ship_id = ''
+      it 'days_to_shipが未選択では登録できない' do
+        @item.days_to_ship_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship can't be blank")
       end
@@ -56,6 +56,16 @@ RSpec.describe Item, type: :model do
         @item.price = '２０００'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it 'priceは¥10,000,000以上だと登録できない' do
+        @item.price = '10000000'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
+      end
+      it 'priceは¥300未満だと登録できない' do
+        @item.price = '299'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
     end
     context '新規登録できる時' do
