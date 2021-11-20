@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
-    product_name         { 'アイパッド'}
-    description          { '未使用でまだ開封していません。'}
+    product_name         { 'アイパッド' }
+    description          { '未使用でまだ開封していません。' }
     category_id          { '2' }
     condition_id         { '2' }
     shipping_charge_id   { '2' }

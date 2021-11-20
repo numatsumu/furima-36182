@@ -10,43 +10,42 @@ RSpec.describe Item, type: :model do
       it 'imageが空では登録できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank") 
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it 'product_nameが空では登録できない' do
         @item.product_name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Product name can't be blank")       
+        expect(@item.errors.full_messages).to include("Product name can't be blank")
       end
       it 'descriptionが空では登録できない' do
         @item.description = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Description can't be blank") 
+        expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it 'categoryが空では登録できない' do
         @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank") 
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it 'conditionが空では登録できない' do
         @item.condition_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank") 
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
       it 'shipping_chargeが空では登録できない' do
         @item.shipping_charge_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping charge can't be blank") 
+        expect(@item.errors.full_messages).to include("Shipping charge can't be blank")
       end
       it 'prefectureが空では登録できない' do
         @item.prefecture_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank") 
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'days_to_shipが空では登録できない' do
         @item.days_to_ship_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship can't be blank")
-        
       end
       it 'priceが空では登録できない' do
         @item.price = ''
