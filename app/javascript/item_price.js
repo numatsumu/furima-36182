@@ -6,7 +6,7 @@ window.addEventListener('load', function(){
   priceInput.addEventListener('input', function(){
     const price = priceInput.value
     charge = Math.floor(price * 0.1)
-    taxPrice.innerHTML = charge
-    profit.innerHTML = (price - charge)
+    taxPrice.innerHTML = charge.toLocaleString()
+    profit.innerHTML = (price - charge).toLocaleString()
   })
 })
