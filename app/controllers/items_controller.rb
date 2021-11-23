@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :edit]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :move_to_index, except: [:index, :show]
 
@@ -20,11 +21,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
@@ -37,6 +36,10 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   def item_params
     params.require(:item).permit(:product_name, :description, :category_id, :condition_id, :shipping_charge_id,
