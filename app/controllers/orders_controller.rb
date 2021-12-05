@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
   before_action :move_to_index, only: :index
 
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
   end
 
   def move_to_index
-    if @item.order.present? || current_user.id == @item.user_id
+    if @item.order.present?
       redirect_to root_path
     end
   end

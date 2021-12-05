@@ -31,7 +31,7 @@ RSpec.describe OrderDestination, type: :model do
         expect(@order_destination.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'prefectureを選択していないと保存できないこと' do
-        @order_destination.prefecture_id = 0
+        @order_destination.prefecture_id = 1
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("Prefecture can't be blank")
       end
