@@ -30,6 +30,16 @@ RSpec.describe OrderDestination, type: :model do
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
+      it 'postal_codeは全角数字では保存できないこと' do
+        @order_destination.postal_code = '１２３−４５６７'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+      end
+      it 'postal_codeは半角数字以外では保存できないこと' do
+        @order_destination.postal_code = 'abc-defg'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+      end
       it 'prefectureを選択していないと保存できないこと' do
         @order_destination.prefecture_id = 1
         @order_destination.valid?
@@ -64,6 +74,21 @@ RSpec.describe OrderDestination, type: :model do
         @order_destination.phone_number = '012345678901'
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'phone_numberは全角数字では保存できないこと' do
+        @order_destination.phone_number = '０１２３４５６７８９０'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'phone_numberは半角数字以外では保存できないこと' do
+        @order_destination.phone_number = 'abcdefghijk'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'tokenが空だと保存できないこと' do
+        @order_destination.token = nil
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Token can't be blank")
       end
       it 'userが紐付いていないと保存できないこと' do
         @order_destination.user_id = nil
